@@ -25,7 +25,7 @@ After enrolling your machine to the *Windows Insider Program* please make sure
 that your diagnostic data collection settings are set to *Full*. Some *Insider
 Preview* builds may not get offered in *Windows Update* if you do not have
 correct telemetry settings. You can verify or modify your telemetry settings in
-*Settings* > *Privacy and Security* > *Diagnostics & feedback* __in Windows 11__ and *Settings* > *Privacy* > *Diagnostics & Feedback* __in Windows 10__.
+*Settings* > *Privacy and Security* > *Diagnostics & feedback* __in Windows 11__ and *Settings* > *Privacy* > *Diagnostics & Feedback* __in Windows 10__.__
 
 #### Restoring Windows Insider Program to default options
 To restore *Windows Insider Program* to default settings simply choose `Stop
