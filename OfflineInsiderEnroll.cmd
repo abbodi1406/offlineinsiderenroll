@@ -19,9 +19,9 @@ set "Path=%SysPath%;%SystemRoot%;%SysPath%\Wbem;%SysPath%\WindowsPowerShell\v1.0
 
 for /f "tokens=6 delims=[]. " %%i in ('ver') do set build=%%i
 
-if %build% LSS 17763 (
+if %build% LSS 18362 (
     echo =============================================================
-    echo The script is compatible only with Windows 10 v1809 and later
+    echo The script is compatible only with Windows 10 v1903 and later
     echo =============================================================
     echo.
     pause
@@ -160,7 +160,7 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /f 
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /f /t REG_DWORD /v UIUsage /d 26
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /f /t REG_DWORD /v OptOutState /d 25
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /f /t REG_DWORD /v AdvancedToggleState /d 24
-if %build% LSS 21990 goto :EOF
+if %build% LSS 21390 goto :EOF
 (
 echo Windows Registry Editor Version 5.00
 echo.
