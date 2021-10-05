@@ -1,6 +1,6 @@
 @setlocal DisableDelayedExpansion
 @echo off
-set "scriptver=2.6.1"
+set "scriptver=2.6.2"
 
 set "_cmdf=%~f0"
 if exist "%SystemRoot%\Sysnative\cmd.exe" (
