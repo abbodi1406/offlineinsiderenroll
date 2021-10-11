@@ -181,6 +181,10 @@ goto :EOF
 
 :ENROLL
 echo Applying changes...
+echo Applied your Changes
+echo ======================================
+echo You are enrolled to %Channel% Channel
+echo ======================================
 call :RESET_INSIDER_CONFIG 1>NUL 2>NUL
 call :ADD_INSIDER_CONFIG 1>NUL 2>NUL
 bcdedit /set {current} flightsigning yes >nul 2>&1
@@ -194,19 +198,24 @@ goto :EOF
 
 :STOP_INSIDER
 echo Applying changes...
+echo ==========================
+echo Insider builds are stopped
+echo ==========================
 call :RESET_INSIDER_CONFIG 1>nul 2>nul
 bcdedit /deletevalue {current} flightsigning >nul 2>&1
 echo Done.
 
 echo.
 if %FlightSigningEnabled% neq 0 goto :ASK_FOR_REBOOT
-echo Press any key to exit.
+echo Press any key to exit the script.
 pause >nul
 goto :EOF
 
 :ASK_FOR_REBOOT
 set "choice="
-echo A reboot is required to finish applying changes.
+echo Note:
+echo A Reboot is required to finish applying changes.
+echo because Microsoft Flight Signing is Disabled
 set /p choice="Would you like to reboot your PC? (y/N) "
 if /I "%choice%"=="y" shutdown -r -t 0
 goto :EOF
