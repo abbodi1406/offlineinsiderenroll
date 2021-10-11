@@ -53,7 +53,7 @@ echo 2 - Enroll to Beta Channel
 echo 3 - Enroll to Release Preview Channel
 echo.
 echo 4 - Stop receiving Insider Preview builds
-echo 5 - Quit without making any changes
+echo 5 - Quit the script without making any changes
 echo.
 set /p choice="Choice: "
 echo.
@@ -165,6 +165,7 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\Setup\MoSetup" /f /t REG_DWORD /v AllowUpgrad
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\Setup\LabConfig" /f /t REG_DWORD /v BypassRAMCheck /d 1
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\Setup\LabConfig" /f /t REG_DWORD /v BypassSecureBootCheck /d 1
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\Setup\LabConfig" /f /t REG_DWORD /v BypassStorageCheck /d 1
+:: I wont recommend this because if we install windows 11 on low storage device it will take the full space of harddrive
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\Setup\LabConfig" /f /t REG_DWORD /v BypassTPMCheck /d 1
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\PCHC" /f /t REG_DWORD /v UpgradeEligibility /d 1
 if %build% LSS 21990 goto :EOF
