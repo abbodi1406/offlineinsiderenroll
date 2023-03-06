@@ -1,6 +1,6 @@
 @setlocal DisableDelayedExpansion
 @echo off
-set "scriptver=2.6.3"
+set "scriptver=3.0.0"
 
 set "_cmdf=%~f0"
 if exist "%SystemRoot%\Sysnative\cmd.exe" (
@@ -48,20 +48,22 @@ cls
 title OfflineInsiderEnroll v%scriptver%
 set "choice="
 echo.
-echo 1 - Enroll to Dev Channel
-echo 2 - Enroll to Beta Channel
-echo 3 - Enroll to Release Preview Channel
+echo 1 - Enroll to Canary Channel
+echo 2 - Enroll to Dev Channel (Recommended)
+echo 3 - Enroll to Beta Channel
+echo 4 - Enroll to Release Preview Channel
 echo.
-echo 4 - Stop receiving Insider Preview builds
-echo 5 - Quit without making any changes
+echo 5 - Stop receiving Insider Preview builds
+echo 6 - Quit without making any changes
 echo.
 set /p choice="Choice: "
 echo.
-if /I "%choice%"=="1" goto :ENROLL_DEV
-if /I "%choice%"=="2" goto :ENROLL_BETA
-if /I "%choice%"=="3" goto :ENROLL_RP
-if /I "%choice%"=="4" goto :STOP_INSIDER
-if /I "%choice%"=="5" goto :EOF
+if /I "%choice%"=="2" goto :ENROLL_CANARY
+if /I "%choice%"=="2" goto :ENROLL_DEV
+if /I "%choice%"=="3" goto :ENROLL_BETA
+if /I "%choice%"=="4" goto :ENROLL_RP
+if /I "%choice%"=="5" goto :STOP_INSIDER
+if /I "%choice%"=="6" goto :EOF
 goto :CHOICE_MENU
 
 :ENROLL_RP
@@ -85,6 +87,15 @@ goto :ENROLL
 :ENROLL_DEV
 set "Channel=Dev"
 set "Fancy=Dev Channel"
+set "BRL=2"
+set "Content=Mainline"
+set "Ring=External"
+set "RID=11"
+goto :ENROLL
+
+:ENROLL_CANARY
+set "Channel=CanaryChannel"
+set "Fancy=Canary Channel"
 set "BRL=2"
 set "Content=Mainline"
 set "Ring=External"
