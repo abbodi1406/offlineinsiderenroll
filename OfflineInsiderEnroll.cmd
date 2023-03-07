@@ -302,6 +302,7 @@ echo Applying changes...
 call :RESET_INSIDER_CONFIG 1>NUL 2>NUL
 call :ADD_INSIDER_CONFIG 1>NUL 2>NUL
 bcdedit /set {current} flightsigning yes >nul 2>&1
+bcdedit /set {bootmgr} flightsigning yes >nul 2>&1
 echo Done.
 
 echo.
@@ -315,6 +316,7 @@ echo Applying changes...
 call :RESET_INSIDER_CONFIG 1>nul 2>nul
 if %cleanup% equ 1 (
 bcdedit /deletevalue {current} flightsigning >nul 2>&1
+bcdedit /deletevalue {bootmgr} flightsigning >nul 2>&1
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\ClientState" /f /t REG_DWORD /v UserDidOptOut /d 1 >nul 2>&1
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /f /t REG_DWORD /v OptOutState /d 25 >nul 2>&1
 ) else (
