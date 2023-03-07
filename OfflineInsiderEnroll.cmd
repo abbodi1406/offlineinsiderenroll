@@ -1,6 +1,6 @@
 @setlocal DisableDelayedExpansion
 @echo off
-set "scriptver=3.0.1"
+set "scriptver=3.1.0"
 
 set "_cmdf=%~f0"
 if exist "%SystemRoot%\Sysnative\cmd.exe" (
@@ -45,20 +45,23 @@ if %ERRORLEVEL% equ 0 set "FlightSigningEnabled=1"
 
 :CHOICE_MENU
 cls
-title OfflineInsiderEnroll v%scriptver%
+title OfflineInsiderEnroll v%scriptver% Preview
 set "choice="
+echo OfflineInsiderEnroll v%scriptver% - PREVIEW
 echo.
-echo 1 - Enroll to Canary Channel
-echo 2 - Enroll to Dev Channel (Recommended)
-echo 3 - Enroll to Beta Channel
-echo 4 - Enroll to Release Preview Channel
+echo Select an option, Options 1-4 will enroll you to a channel. To go back to a build, clean install Windows.
 echo.
-echo 5 - Stop receiving Insider Preview builds
-echo 6 - Quit without making any changes
+echo 1 - Canary Channel
+echo 2 - Dev Channel (Recommended)
+echo 3 - Beta Channel
+echo 4 - Release Preview
+echo.
+echo 5 - Stop receiving builds
+echo 6 - Quit
 echo.
 set /p choice="Choice: "
 echo.
-if /I "%choice%"=="1" goto :ENROLL_NEXT
+if /I "%choice%"=="1" goto :ENROLL_CHECK
 if /I "%choice%"=="2" goto :ENROLL_DEV
 if /I "%choice%"=="3" goto :ENROLL_BETA
 if /I "%choice%"=="4" goto :ENROLL_RP
@@ -93,10 +96,20 @@ set "Ring=External"
 set "RID=11"
 goto :ENROLL
 
-:ENROLL_NEXT
+:ENROLL_CHECK
+If %build% GEQ 19041 (goto :ENROLL_CAN) ELSE (
+    echo =============================================================
+    echo This channel is only for Windows 10 2004 or later.
+    echo =============================================================
+    echo.
+    pause
+    goto :EOF
+)
+
+:ENROLL_CAN
 set "Channel=CanaryChannel"
 set "Fancy=Canary Channel"
-set "BRL=2"
+set "BRL="
 set "Content=Mainline"
 set "Ring=External"
 set "RID=11"
