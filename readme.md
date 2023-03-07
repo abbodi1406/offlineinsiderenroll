@@ -1,6 +1,6 @@
 # OfflineInsiderEnroll
 
-![Screenshot of OfflineInsiderEnroll](https://i.imgur.com/hzusXzd.png)
+![Screenshot of OfflineInsiderEnroll](https://github.com/RedPCat/offlineinsiderenroll/blob/beta/OIE-Preview-SS.png?raw=true)
 
 ## Description
 
@@ -8,6 +8,8 @@ OfflineInsiderEnroll is a simple Windows Command Prompt script to enable access
 to the Windows Insider Program on machines not signed in with Microsoft Account.
 
 This script is compatible only with Windows 11 or Windows 10 version 1809 and later.
+
+### NOTE: Canary Channel is available on Windows 11 or Windows 10 version 2004 and later.
 
 ## Usage
 
