@@ -214,6 +214,7 @@ echo Applying changes...
 call :RESET_INSIDER_CONFIG 1>NUL 2>NUL
 call :ADD_INSIDER_CONFIG 1>NUL 2>NUL
 bcdedit /set {current} flightsigning yes >nul 2>&1
+bcdedit /set {bootmgr} flightsigning yes >nul 2>&1
 echo Done.
 
 echo.
@@ -226,6 +227,7 @@ goto :EOF
 echo Applying changes...
 call :RESET_INSIDER_CONFIG 1>nul 2>nul
 bcdedit /deletevalue {current} flightsigning >nul 2>&1
+bcdedit /deletevalue {bootmgr} flightsigning >nul 2>&1
 echo Done.
 
 echo.
