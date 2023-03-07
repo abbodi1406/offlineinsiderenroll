@@ -1,6 +1,6 @@
 @setlocal DisableDelayedExpansion
 @echo off
-set "scriptver=3.0.0"
+set "scriptver=3.0.1"
 
 set "_cmdf=%~f0"
 if exist "%SystemRoot%\Sysnative\cmd.exe" (
@@ -58,7 +58,7 @@ echo 6 - Quit without making any changes
 echo.
 set /p choice="Choice: "
 echo.
-if /I "%choice%"=="2" goto :ENROLL_CANARY
+if /I "%choice%"=="1" goto :ENROLL_NEXT
 if /I "%choice%"=="2" goto :ENROLL_DEV
 if /I "%choice%"=="3" goto :ENROLL_BETA
 if /I "%choice%"=="4" goto :ENROLL_RP
@@ -93,7 +93,7 @@ set "Ring=External"
 set "RID=11"
 goto :ENROLL
 
-:ENROLL_CANARY
+:ENROLL_NEXT
 set "Channel=CanaryChannel"
 set "Fancy=Canary Channel"
 set "BRL=2"
