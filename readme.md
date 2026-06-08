@@ -1,6 +1,6 @@
 # OfflineInsiderEnroll
 
-![Screenshot of OfflineInsiderEnroll](https://i.imgur.com/8HGi1w8.png)
+![Screenshot of OfflineInsiderEnroll](https://images2.imgbox.com/ad/dc/ABiVaFfq_o.png)
 
 ## Description
 
@@ -9,7 +9,6 @@ to the Windows Insider Program on machines not signed in with Microsoft Account.
 
 This script is compatible only with Windows 11 or Windows 10 version 1809 and later.
 
-* Chinese (Simplified) fork - 本项目汉化自: [简体中文](https://github.com/wkywky123123/offlineinsiderenroll)
 * Chinese (Simplified) fork: [简体中文](https://github.com/apoint123/offlineinsiderenroll)
 
 ## Usage
@@ -27,7 +26,9 @@ If the machine was not enrolled to the Insider Program, you will get prompted to
 restart your machine to enable *`Microsoft Flight Signing`* which is required by
 *`Windows Insider Program`*.
 
-**Notice:** Windows Insider Program requires telemetry to be set to *`Full`*.
+### Notice
+
+Windows Insider Program requires telemetry to be set to *`Full`*.
 After enrolling your machine to the *Windows Insider Program* please make sure
 that your diagnostic data collection settings are set to *`Full`*. Some `Insider
 Preview` builds may not get offered in *`Windows Update`* if you do not have
@@ -48,7 +49,7 @@ to reboot, because this option will disable *`Microsoft Flight Signing`*.
 ## How does this work?
 
 This script takes advantage of undocumented `TestFlags` registry value.
-If this value is set to `0x20`, all access to online *Windows Insider* services
+If this value bitwise includes `0x20`, all access to online *Windows Insider* services
 gets disabled. Because of this, we can set our own *Windows Insider Preview*
 configuration without being overriden by the contact to the service. Since
 `Windows Update` does not check if machine is actually enrolled to the program,
