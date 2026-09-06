@@ -1,6 +1,6 @@
 @setlocal DisableDelayedExpansion
 @echo off
-set "scriptver=2.6.6"
+set "scriptver=2.6.7"
 
 set "_args=%*"
 set "_elv="
@@ -62,15 +62,14 @@ if %ERRORLEVEL% equ 0 set "FlightSigningEnabled=1"
 set _bld=1
 for /f "tokens=2 delims=[]" %%G in ('ver') do for /f "tokens=4 delims=. " %%# in ("%%~G") do set _bld=%%#
 set "_wis=26220+"
-if %_bld% geq 26300 set "_wis=%_bld%+"
+if %_bld% geq 26340 set "_wis=%_bld%+"
+if %_bld% equ 26300 set "_wis=26340+"
 if %_bld% equ 28000 set "_wis=28020"
 if %_bld% lss 22000 set "_wis=22635"
 if %_bld% lss 19041 set "_wis=19045"
-set "_wif=26300+"
-if %_bld% geq 28000 set "_wif=28020+"
-if %_bld% geq 29500 set "_wif=%_bld%+"
-set _can2=0
-if %_bld% lss 27000 if %_bld% geq 19041 set _can2=1
+set "_wif=26340+"
+if %_bld% geq 28000 set "_wif=28120+"
+if %_bld% geq 29000 set "_wif=%_bld%+"
 set _srv=0
 if exist "%SystemRoot%\Servicing\Packages\Microsoft-Windows-Server*Edition~*.mum" set _srv=1
 
@@ -81,13 +80,12 @@ set "choice="
 echo.
 echo ---- Experience            ^| Channel ^| Target        ---
 echo.
-echo. 1 - Experimental [Future] ^| Canary  ^| 29500+
+echo. 1 - Experimental [Future] ^| Dev     ^| 29500+
 if %_srv% equ 0 (
-if %_can2% equ 1 echo. 2 - Experimental [26H1]   ^| Canary  ^| 28020+
-echo. 3 - Experimental          ^| Dev     ^| %_wif%
-echo. 4 - Beta                  ^| Beta    ^| %_wis%
+echo. 2 - Experimental          ^| Dev     ^| %_wif%
+echo. 3 - Beta                  ^| Beta    ^| %_wis%
 )
-echo. 5 - Release Preview       ^| RP      ^| %_bld% / next RTM
+echo. 4 - Release Preview       ^| RP      ^| %_bld% / next RTM
 echo --------------------------------------------------------
 echo.
 echo. 6 - Refresh Windows Update Scan Cache
@@ -99,11 +97,10 @@ set /p choice="Choice: "
 echo.
 if /I "%choice%"=="1" goto :ENROLL_CAN
 if %_srv% equ 0 (
-if /I "%choice%"=="2" if %_can2% equ 1 goto :ENROLL_26H
-if /I "%choice%"=="3" goto :ENROLL_DEV
-if /I "%choice%"=="4" goto :ENROLL_BETA
+if /I "%choice%"=="2" goto :ENROLL_DEV
+if /I "%choice%"=="3" goto :ENROLL_BETA
 )
-if /I "%choice%"=="5" goto :ENROLL_RP
+if /I "%choice%"=="4" goto :ENROLL_RP
 if /I "%choice%"=="6" goto :REFRESH_WU
 if /I "%choice%"=="7" goto :STOP_INSIDER
 if /I "%choice%"=="8" (set cleanup=1&goto :STOP_INSIDER)
@@ -129,24 +126,14 @@ set "Channel=Dev"
 set "uiChannel=Dev"
 set "uiBranch=%Channel%"
 set "Fancy=Experimental Channel"
-if %_bld% lss 27000 set "uiVersion=26200"
-goto :doENROLL
-
-:ENROLL_26H
-set "Channel=CanaryChannel"
-set "uiChannel=Canary"
-set "uiBranch=Dev"
-set "Fancy=Experimental [26H1]"
-set "uiVersion=28000"
 goto :doENROLL
 
 :ENROLL_CAN
-set "Channel=CanaryChannel"
-set "uiChannel=Canary"
+set "Channel=Dev"
+set "uiChannel=Dev"
 set "uiBranch=%Channel%"
 set "Fancy=Experimental [Future Platforms]"
-if %_bld% lss 29500 set "uiVersion=0xffffffff"
-if %_bld% geq 26100 set "uiBranch=Dev"
+if %_bld% lss 29000 set "uiVersion=0xffffffff"
 goto :doENROLL
 
 :RESET_INSIDER_CONFIG

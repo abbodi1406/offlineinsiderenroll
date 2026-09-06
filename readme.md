@@ -1,6 +1,6 @@
 # OfflineInsiderEnroll
 
-![Screenshot of OfflineInsiderEnroll](https://images2.imgbox.com/ad/dc/ABiVaFfq_o.png)
+![Screenshot of OfflineInsiderEnroll](https://i.imgur.com/OYb7uEb.png)
 
 ## Description
 
